@@ -5,11 +5,20 @@ struct MyApp {
     button2_clicks: u32,
     button3_clicks: u32,
     button4_clicks: u32,
+    buttons: [String; 4],
+    clicks: [u32; 4],
 }
 
 impl Default for MyApp {
     fn default() -> Self {
         Self {
+            buttons: [
+                String::from("button1"),
+                String::from("button2"),
+                String::from("button3"),
+                String::from("button4"),
+            ],
+            clicks: [0, 0, 0, 0],
             button1_clicks: 0,
             button2_clicks: 0,
             button3_clicks: 0,
