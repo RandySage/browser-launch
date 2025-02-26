@@ -1,10 +1,6 @@
 use eframe::egui;
 
 struct MyApp {
-    button1_clicks: u32,
-    button2_clicks: u32,
-    button3_clicks: u32,
-    button4_clicks: u32,
     buttons: [String; 4],
     clicks: [u32; 4],
 }
@@ -13,16 +9,12 @@ impl Default for MyApp {
     fn default() -> Self {
         Self {
             buttons: [
-                String::from("button1"),
-                String::from("button2"),
-                String::from("button3"),
-                String::from("button4"),
+                String::from("Button 1"),
+                String::from("Button 2"),
+                String::from("Button 3"),
+                String::from("Button 4"),
             ],
             clicks: [0, 0, 0, 0],
-            button1_clicks: 0,
-            button2_clicks: 0,
-            button3_clicks: 0,
-            button4_clicks: 0,
         }
     }
 }
@@ -34,24 +26,11 @@ impl eframe::App for MyApp {
 
             ui.add_space(20.0);
 
-            if ui.button("Button 1").clicked() {
-                self.button1_clicks += 1;
-                println!("Button 1 was clicked! Total clicks: {}", self.button1_clicks);
-            }
-
-            if ui.button("Button 2").clicked() {
-                self.button2_clicks += 1;
-                println!("Button 2 was pressed! Total presses: {}", self.button2_clicks);
-            }
-
-            if ui.button("Button 3").clicked() {
-                self.button3_clicks += 1;
-                println!("You activated Button 3! Activation count: {}", self.button3_clicks);
-            }
-
-            if ui.button("Button 4").clicked() {
-                self.button4_clicks += 1;
-                println!("Button 4 says hello! Greeting count: {}", self.button4_clicks);
+            for index in [0, 1, 2, 3] {
+                if ui.button(self.buttons[index].clone()).clicked() {
+                    self.clicks[index] += 1;
+                    println!("{} was clicked! Total clicks: {}", self.buttons[index], self.clicks[index]);
+                }
             }
         });
     }
